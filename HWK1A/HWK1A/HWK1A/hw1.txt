@@ -1,0 +1,59 @@
+﻿
+c.1.What are benefits to use Scrum?
+
+Scrum is an agile framework for project management that helps teams complete project deliverables quickly and efficiently. 
+1. Higher quality and productivity with lower costs.
+2. High ability to incorporate changes as they occur.
+3. Better user satisfaction.
+4. Large projects are divided into easily manageable sprints.
+5. Teams get clear visibility through scrum meetings.
+6. Adopts feedback from stakeholders and customers.
+7. Individual effort of each team members is visible during daily scrum meetings.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+c.2.According to Cynefin framework, what are five problem domains? Which
+problem domain(s) is Scrum particularly well suited for?
+
+We can use the Cynefin framework to categorize a problem and respond accordingly. It will help to make better decisions in emergency.
+The Cynefin define any situation or problem into following five categories:
+
+1. Obvious(commonly known as Simple):Represent known knowns
+There is a direct relationship between cause and effect of the problem that can be seen by everyone. For example, problems encountered at call centers or help desk which are predictable, and there are processes in place to handle most of them. Snowden argues that you need to Sense-Categorize-Respond to obvious decisions.
+Characteristics of obvious category are:
+a. Single correct answer exists.
+b. Fact-based approach required.
+c. Simple problem solving methods can be applied.
+d. Situation requires minimum expertise to resolve.
+
+2. Complicated:Consists of known unknowns
+The problems might have several correct solutions. There is a clear relationship between cause and effect, but it may not be visible to everyone, because the problem is complicated. For example, you might see several symptoms of a problem but don't know how to fix it. The decision-making approach here is to "Sense – Analyze – Respond. In other words, you need to assess the situation, analyze what is known with the help of experts, and decide on the best response, using good practice.
+Characteristics of complicated category are:
+a. Multiple right answers are available.
+b. The problem is more predictable than unpredictable.
+c. You know the questions you need to answer but you don't know how to obtain those answers.
+
+3. Complex: Represents unknown unknows
+For complex categoyr solutions are discovered by developing safe environment for experimentation. The best approach here is Probe-Sense-Respond, rather than trying to control the situation, it's best to be patient look for different insights and patterns and then encourage for an solution.
+Characteristics of complex category are:
+a. Complex contexts are more unpredictable than predictable.
+b. Communication is essential
+c. Even the starting point needs experimentation.
+d. Sector of emergence ideas.
+e. Requires innovative approaches.
+
+4. Chaotic:
+This problem requires rapid response. The decision-making approach here is to Act–Sense–Respond. The immediate action required to prevent further harm when in crisis and to return the situation to a normal environment.
+Characteristics of chaotic category are:
+a. Solution does not have to be best as reponse time is more important.
+b. Immediate priority is containment.
+c. Many decisions to make, no time to think.
+d. Look for what works first instead of the right solution.
+e. Immediate action to reestablish order.
+
+5. Disorder:
+It can be extremely difficult to identify when you're in a "disorder" situation. This category applies to those situations when you don’t know which of the other sectors to apply. The way to approach Disorder is to start breaking down the situation into smaller problems. Then reapply the problem to one of the four categories and work on a solution.
+Characteristics for disorder category are:
+a. No time to correct the situation.
+b. If the problem or situation doesn’t fit in other the Four categories then it's Disorder.
+
