@@ -2,7 +2,7 @@
 c.1.What are benefits to use Scrum?
 
 Scrum is an agile framework for project management that helps teams complete project deliverables quickly and efficiently. 
-1. Higher quality and productivity with lower costs.
+1. Higher quality and high productivity with lower costs.
 2. High ability to incorporate changes as they occur.
 3. Better user satisfaction.
 4. Large projects are divided into easily manageable sprints.
@@ -10,7 +10,8 @@ Scrum is an agile framework for project management that helps teams complete pro
 6. Adopts feedback from stakeholders and customers.
 7. Individual effort of each team members is visible during daily scrum meetings.
 
---------------------------------------------------------------------------------------------------------------------------------------------
+
+
 
 c.2.According to Cynefin framework, what are five problem domains? Which
 problem domain(s) is Scrum particularly well suited for?
@@ -19,7 +20,7 @@ We can use the Cynefin framework to categorize a problem and respond accordingly
 The Cynefin define any situation or problem into following five categories:
 
 1. Obvious(commonly known as Simple):Represent known knowns
-There is a direct relationship between cause and effect of the problem that can be seen by everyone. For example, problems encountered at call centers or help desk which are predictable, and there are processes in place to handle most of them. Snowden argues that you need to Sense-Categorize-Respond to obvious decisions.
+There is a direct relationship between cause and effect of the problem that can be seen by everyone. For example, problems encountered at call centers or help desk which are predictable, and there are processes in place to handle most of them.  If a customer fails to make a credit card payment before the due date and calls up customer care, then the customer care clearly knows based on the SOPs and communicate the next steps. Snowden argues that you need to Sense-Categorize-Respond to obvious decisions.
 Characteristics of obvious category are:
 a. Single correct answer exists.
 b. Fact-based approach required.
@@ -27,14 +28,14 @@ c. Simple problem solving methods can be applied.
 d. Situation requires minimum expertise to resolve.
 
 2. Complicated:Consists of known unknowns
-The problems might have several correct solutions. There is a clear relationship between cause and effect, but it may not be visible to everyone, because the problem is complicated. For example, you might see several symptoms of a problem but don't know how to fix it. The decision-making approach here is to "Sense – Analyze – Respond. In other words, you need to assess the situation, analyze what is known with the help of experts, and decide on the best response, using good practice.
+The problems might have several correct solutions. There is a clear relationship between cause and effect, but it may not be visible to everyone, because the problem is complicated. For example, you might see several symptoms of a problem but don't know how to fix it. The decision-making approach here is to "Sense – Analyze – Respond. In other words, you need to assess the situation, analyze what is known with the help of experts, and decide on the best response, using good practice. For example, if customer places an order on an ecommerce site and payment is pending not done from his/her side. In this case, customer has to analyze the situation and guide customer on the next steps to follow.
 Characteristics of complicated category are:
 a. Multiple right answers are available.
 b. The problem is more predictable than unpredictable.
 c. You know the questions you need to answer but you don't know how to obtain those answers.
 
 3. Complex: Represents unknown unknows
-For complex categoyr solutions are discovered by developing safe environment for experimentation. The best approach here is Probe-Sense-Respond, rather than trying to control the situation, it's best to be patient look for different insights and patterns and then encourage for an solution.
+For complex category solutions are discovered by developing safe environment for experimentation. The best approach here is Probe-Sense-Respond, rather than trying to control the situation, it's best to be patient look for different insights and patterns and then encourage for an solution.
 Characteristics of complex category are:
 a. Complex contexts are more unpredictable than predictable.
 b. Communication is essential
@@ -57,3 +58,4 @@ Characteristics for disorder category are:
 a. No time to correct the situation.
 b. If the problem or situation doesn’t fit in other the Four categories then it's Disorder.
 
+Scrum is well suited for operating in Complex domains.
