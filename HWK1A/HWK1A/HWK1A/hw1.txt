@@ -10,7 +10,7 @@ Scrum is an agile framework for project management that helps teams complete pro
 6. Adopts feedback from stakeholders and customers.
 7. Individual effort of each team members is visible during daily scrum meetings.
 
----------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------
 
 c.2.According to Cynefin framework, what are five problem domains? Which
 problem domain(s) is Scrum particularly well suited for?
