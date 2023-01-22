@@ -176,23 +176,26 @@ namespace HWK1B
                 float sum = 0;
                 int count = 0;
                 float max = 0;
-                float[] arr = new float[6];
+                float[] arr = new float[30];
                 foreach (string line in lines)
                 {
                     string[] columns = line.Split(',');
                     float result = float.Parse(columns[columnIndex]);
                     /*
-                     * Max Calculation
+                     * Max calculation
                      */
-                    if (result > max)
+                    if (result > 0)
                     {
-                        max = result;
+                        if (result > max)
+                        {
+                            max = result;
+                        }
+                        sum = sum + result;
+                        arr[count] = result;
+                        count++;
                     }
-                    sum = sum + result;
-                    arr[count] = result;
-                    count++;
-
                 }
+                arr = arr.Where(x => x > 0).ToArray();
                 /*
                  * Median Calculation
                  */
