@@ -4,3 +4,4 @@ Siddhi, Kapre, 300.0, 40.0, 50.0
 Sachin, Murthy, 120.0, 80.0, 40.0
 Pragna, S, 125.0, 90.0, 60.0
 Anuradha, Konatham, 50.0, 60.0, 80.0
+Likitha, Budhavaram, 130.0, 30.0, 50.0
