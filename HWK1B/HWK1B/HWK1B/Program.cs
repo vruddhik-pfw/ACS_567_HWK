@@ -74,7 +74,7 @@ namespace HWK1B
                     Console.WriteLine(line);
                 }
             }
-            catch(FileNotFoundException)
+            catch (FileNotFoundException)
             {
                 Console.WriteLine("File not found!");
             }
@@ -97,7 +97,7 @@ namespace HWK1B
                 File.AppendAllText("C:\\Users\\Vruddhi\\Desktop\\ACS_567_HWK\\HWK1B\\HWK1B\\HWK1B\\demo.txt", Environment.NewLine + data);
                 Console.WriteLine("Data added successfully!");
             }
-            catch(IOException)
+            catch (IOException)
             {
                 Console.WriteLine("Error occured while adding data to file!");
             }
@@ -126,7 +126,7 @@ namespace HWK1B
                     Console.WriteLine(line);
                 }
             }
-            catch(FileNotFoundException)
+            catch (FileNotFoundException)
             {
                 Console.WriteLine("File not found!");
             }
@@ -134,23 +134,26 @@ namespace HWK1B
 
         /*
          * Function for searching/filtering the data from file
+         * This function takes input and displays firstname and lastname
          */
         static void FilterDataMethod2()
         {
             Console.Write("Enter filter keyword: ");
             string keyword = Console.ReadLine();
-            /*
-             * try-catch blocks to handle any exceptions that might occur 
-             * when searching data from the text file
-             */
-            try
+                /*
+                 * try-catch blocks to handle any exceptions that might occur 
+                 * when searching data from the text file
+                 */
+                try
             {
                 string[] lines = File.ReadAllLines("C:\\Users\\Vruddhi\\Desktop\\ACS_567_HWK\\HWK1B\\HWK1B\\HWK1B\\demo.txt");
                 var filteredLines = lines.Where(x => x.Contains(keyword));
-
+                int firstNameIndex = 0;
+                int lastNameIndex = 1;
                 foreach (string line in filteredLines)
                 {
-                    Console.WriteLine(line);
+                    string[] columns = line.Split(',');
+                    Console.WriteLine(columns[firstNameIndex]+columns[lastNameIndex]);
                 }
             }
             catch (FileNotFoundException)
@@ -173,7 +176,7 @@ namespace HWK1B
                 float sum = 0;
                 int count = 0;
                 float max = 0;
-                float[] arr =new float[6];
+                float[] arr = new float[6];
                 foreach (string line in lines)
                 {
                     string[] columns = line.Split(',');
@@ -185,10 +188,10 @@ namespace HWK1B
                     {
                         max = result;
                     }
-                    sum = sum+ result;
+                    sum = sum + result;
                     arr[count] = result;
-                    count ++;
-                    
+                    count++;
+
                 }
                 /*
                  * Median Calculation
