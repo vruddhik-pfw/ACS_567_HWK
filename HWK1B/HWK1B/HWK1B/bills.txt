@@ -1,0 +1,4 @@
+Provider1,Gas,100,01/01/2023
+Provider2,Water,200,02/01/2023
+Provider3,Electricity,300,01/11/2023
+Provider4,Water,500,01/04/2023

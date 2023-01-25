@@ -5,73 +5,116 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Threading;
+using System.Diagnostics;
+using static System.Net.WebRequestMethods;
 
 namespace HWK1B
 {
+
+    /// <summary>
+    /// C# console application that uses a menu-driven approach to read data
+    /// from a text file, add data to the file, and filter the data and do
+    /// some data analysis
+    /// </summary>
+
+    class Bill
+    {
+        public string Provider { get; set; }
+        public string BillType { get; set; }
+        public decimal Amount { get; set; }
+        public DateTime Date { get; set; }
+    }
     internal class Program
     {
+        static List<Bill> bills = new List<Bill>();
         static void Main(string[] args)
         {
-            /*
-             *  C# console application that uses a menu-driven approach to read data
-             *  from a text file, add data to the file, and filter the data and doing
-             *  some data analysis
-             */
-            while (true)
+            using (var reader = new StreamReader("C:\\Users\\Vruddhi\\Desktop\\ACS_567_HWK\\HWK1B\\HWK1B\\HWK1B\\bills.txt"))
             {
-                Console.WriteLine("1. Read data from file");
-                Console.WriteLine("2. Add data to the file");
-                Console.WriteLine("3. Filter data method 1");
-                Console.WriteLine("4. Filter data method 2");
-                Console.WriteLine("5. Data Analysis");
-                Console.WriteLine("6: Exit");
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    var parts = line.Split(',');
+                    var bill = new Bill
+                    {
+                        Provider = parts[0],
+                        BillType = parts[1],
+                        Amount = decimal.Parse(parts[2]),
+                        Date = DateTime.Parse(parts[3])
+                    };
+                    bills.Add(bill);
+                }
+            }
+
+            bool run = true;
+            while (run)
+            {
+                // Display menu
+                Console.WriteLine("1. Read bills from the file");
+                Console.WriteLine("2. Add bill to the file");
+                Console.WriteLine("3. Filter bills by provider");
+                Console.WriteLine("4. Filter bills by type");
+                Console.WriteLine("5. Calculate Mean and Median");
+                Console.WriteLine("6. Show bills text file");
+                Console.WriteLine("7. Exit");
                 Console.Write("Enter your choice: ");
+                // Get user input
+                var choice = int.Parse(Console.ReadLine());
 
-                int choice = int.Parse(Console.ReadLine());
+                /// <summary>
+                /// Switch case for read data to file, add data to the file,
+                /// filter data from the file and perform analysis 
+                /// </summary>
 
-                /*
-                 * Switch case for read data to file, add data to the file,
-                 * filter data from the file and perform analysis 
-                 */
                 switch (choice)
                 {
                     case 1:
-                        ReadDataFromFile();
+                        ReadBills();
                         break;
                     case 2:
-                        AddDataToFile();
+                        AddBill();
                         break;
                     case 3:
-                        FilterDataMethod1();
+                        FilterBillsMethod1();
                         break;
                     case 4:
-                        FilterDataMethod2();
+                        FilterBillsMethod2();
                         break;
                     case 5:
-                        DataAnalysis();
+                        CalculateMeanMedian();
                         break;
                     case 6:
-                        return;
-
+                        // Show text file
+                        string filePath = @"C:\\Users\\Vruddhi\\Desktop\\ACS_567_HWK\\HWK1B\\HWK1B\\HWK1B\\bills.txt";
+                        // using Process from System.Diagnostics
+                        // The method allows to open the file with the default text editor, which allows the user to view and edit the contents of the file.
+                        Process.Start("notepad.exe", filePath);
+                        break;
+                    case 7:
+                        run = false;
+                        break;
+                    default:
+                        Console.WriteLine("Invalid choice. Please try again");
+                        break;
                 }
             }
         }
 
-        /*
-         * Function for reading the data from file
-         */
-        static void ReadDataFromFile()
+        /// <summary>
+        /// Function for reading the bills from file
+        /// </summary>
+        static void ReadBills()
         {
-            /*
-             * try-catch blocks to handle any exceptions that might occur 
-             * when reading data from the text file
-             */
+
+            /// <summary>
+            /// try-catch blocks to handle any exceptions that might occur 
+            /// when reading data from the text file
+            /// </summary>
             try
             {
-                string[] lines = System.IO.File.ReadAllLines(@"C:\Users\Vruddhi\Desktop\ACS_567_HWK\HWK1B\HWK1B\HWK1B\demo.txt");
-                foreach (string line in lines)
+                foreach (var bill in bills)
                 {
-                    Console.WriteLine(line);
+                    Console.WriteLine($"{bill.Provider} - {bill.BillType} - {bill.Amount:C} - {bill.Date:d}");
                 }
             }
             catch (FileNotFoundException)
@@ -80,50 +123,44 @@ namespace HWK1B
             }
         }
 
-        /*
-         * Function for adding the data to the file
-         */
-        static void AddDataToFile()
-        {
-            Console.Write("Enter data to add: ");
-            string data = Console.ReadLine();
+        /// <summary>
+        /// Function for adding the bill data to the file
+        /// </summary>
 
-            /*
-             * try-catch blocks to handle any exceptions that might occur 
-             * when adding data to the text file
-             */
+        static void AddBill()
+        {
             try
             {
-                File.AppendAllText("C:\\Users\\Vruddhi\\Desktop\\ACS_567_HWK\\HWK1B\\HWK1B\\HWK1B\\demo.txt", Environment.NewLine + data);
-                Console.WriteLine("Data added successfully!");
+                Console.WriteLine("Enter bill provider:");
+                var provider = Console.ReadLine();
+                Console.WriteLine("Enter bill type:");
+                var type = Console.ReadLine();
+                Console.WriteLine("Enter bill amount:");
+                var amount = decimal.Parse(Console.ReadLine());
+                Console.WriteLine("Enter bill date (MM/dd/yyyy):");
+                var date = DateTime.Parse(Console.ReadLine());
+
+                var bill = new Bill { Provider = provider, BillType = type, Amount = amount, Date = date };
+                bills.Add(bill);
             }
             catch (IOException)
             {
-                Console.WriteLine("Error occured while adding data to file!");
+                Console.WriteLine("Error occured while adding bills data to file!");
             }
         }
-
-        /*
-         * Function for searching/filtering the data from file
-         */
-        static void FilterDataMethod1()
+        /// <summary>
+        /// Method 1 :Function for searching/filtering the data from file
+        /// </summary>
+        static void FilterBillsMethod1()
         {
-            Console.Write("Enter filter keyword: ");
-            string keyword = Console.ReadLine();
-            /*
-             * try-catch blocks to handle any exceptions that might occur 
-             * when searching data from the text file
-             */
             try
             {
-                string[] lines = File.ReadAllLines("C:\\Users\\Vruddhi\\Desktop\\ACS_567_HWK\\HWK1B\\HWK1B\\HWK1B\\demo.txt");
-                var filteredLines = from line in lines
-                                    where line.Contains(keyword)
-                                    select line;
-
-                foreach (string line in filteredLines)
+                Console.WriteLine("Enter provider to filter by:");
+                var provider = Console.ReadLine();
+                var filteredBills = bills.Where(b => b.Provider == provider);
+                foreach (var bill in filteredBills)
                 {
-                    Console.WriteLine(line);
+                    Console.WriteLine($"{bill.Provider} - {bill.Amount:C} - {bill.Date:d}");
                 }
             }
             catch (FileNotFoundException)
@@ -132,103 +169,52 @@ namespace HWK1B
             }
         }
 
-        /*
-         * Function for searching/filtering the data from file
-         * This function takes input and displays firstname and lastname
-         */
-        static void FilterDataMethod2()
+        /// <summary>
+        /// Method 2: Function for searching/filtering the data from file
+        /// </summary>
+        static void FilterBillsMethod2()
         {
-            Console.Write("Enter filter keyword: ");
-            string keyword = Console.ReadLine();
-                /*
-                 * try-catch blocks to handle any exceptions that might occur 
-                 * when searching data from the text file
-                 */
-                try
-            {
-                string[] lines = File.ReadAllLines("C:\\Users\\Vruddhi\\Desktop\\ACS_567_HWK\\HWK1B\\HWK1B\\HWK1B\\demo.txt");
-                var filteredLines = lines.Where(x => x.Contains(keyword));
-                int firstNameIndex = 0;
-                int lastNameIndex = 1;
-                foreach (string line in filteredLines)
-                {
-                    string[] columns = line.Split(',');
-                    Console.WriteLine(columns[firstNameIndex]+columns[lastNameIndex]);
-                }
-            }
-            catch (FileNotFoundException)
-            {
-                Console.WriteLine("File not found!");
-            }
-        }
-
-        /*
-         * Function for data analysis on the data like mean, max, median
-         */
-        static void DataAnalysis()
-        {
-
             try
             {
-                // Assume the file is a text file with columns separated by ','
-                string[] lines = File.ReadAllLines("C:\\Users\\Vruddhi\\Desktop\\ACS_567_HWK\\HWK1B\\HWK1B\\HWK1B\\demo.txt");
-                int columnIndex = 3; // The column index to read, 0-based
-                float sum = 0;
-                int count = 0;
-                float max = 0;
-                float[] arr = new float[30];
-                foreach (string line in lines)
+                Console.WriteLine("Enter type to filter by:");
+                var billType = Console.ReadLine();
+                var filteredBills = bills.Where(b => b.BillType == billType);
+                foreach (var bill in filteredBills)
                 {
-                    string[] columns = line.Split(',');
-                    float result = float.Parse(columns[columnIndex]);
-                    /*
-                     * Max calculation
-                     */
-                    if (result > 0)
-                    {
-                        if (result > max)
-                        {
-                            max = result;
-                        }
-                        sum = sum + result;
-                        arr[count] = result;
-                        count++;
-                    }
+                    Console.WriteLine($"{bill.Provider} - {bill.BillType} - {bill.Amount:C} - {bill.Date:d}");
                 }
-                arr = arr.Where(x => x > 0).ToArray();
-                /*
-                 * Median Calculation
-                 */
-                float median;
-                Array.Sort(arr);
-                if (arr.Length % 2 == 0)
-                {
-                    median = (arr[arr.Length / 2 - 1] + arr[arr.Length / 2]) / 2;
-                }
-                else
-                {
-                    median = arr[arr.Length / 2];
-                }
-
-                /*
-                 * Mean calculation
-                 */
-                float mean = sum / count;
-
-                Console.WriteLine("Maximum: {0}", max);
-                Console.WriteLine("Mean: {0}", mean);
-                Console.WriteLine("Median: {0}", median);
-
-
             }
             catch (FileNotFoundException)
             {
                 Console.WriteLine("File not found!");
             }
-            catch (FormatException)
+        }
+        /// <summary>
+        /// Calculates and prints the mean and median to the console based on the amount.
+        /// </summary>
+        static void CalculateMeanMedian()
+        {
+            var billAmounts = new List<decimal>();
+
+            using (var reader = new StreamReader("C:\\Users\\Vruddhi\\Desktop\\ACS_567_HWK\\HWK1B\\HWK1B\\HWK1B\\bills.txt"))
             {
-                Console.WriteLine("Data in file is not in the correct format.");
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    var parts = line.Split(',');
+                    billAmounts.Add(decimal.Parse(parts[2]));
+                }
+                //Program uses the Average() method from the System.Linq namespace to calculate the mean of the bill amounts.
+                var mean = billAmounts.Average();
+                Console.WriteLine("Mean: " + mean);
+
+
+                billAmounts.Sort();
+                var mid = billAmounts.Count / 2;
+                var median = billAmounts.Count % 2 == 0 ? (billAmounts[mid - 1] + billAmounts[mid]) / 2 : billAmounts[mid];
+                Console.WriteLine("Median: " + median);
             }
         }
     }
+
 }
