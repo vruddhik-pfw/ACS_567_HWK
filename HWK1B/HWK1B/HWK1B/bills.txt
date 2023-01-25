@@ -2,3 +2,7 @@ Provider1,Gas,100,01/01/2023
 Provider2,Water,200,02/01/2023
 Provider3,Electricity,300,01/11/2023
 Provider4,Water,500,01/04/2023
+Provider5,Gas,100,01/21/2023
+Provider6,Water,120,01/10/2023
+Provider7,Electricity,150,01/14/2023
+Provider8,Water,200,01/16/2023
