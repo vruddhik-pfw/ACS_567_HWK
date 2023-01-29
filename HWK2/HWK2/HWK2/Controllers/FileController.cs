@@ -135,14 +135,14 @@ namespace TodoRestAPI.Controllers
 		}
 
         /// <summary>
-        /// Action for calculating min,max of amount
+        /// Action for calculating max of amount
         /// </summary>
-        /// <returns>returns min,max</returns>
+        /// <returns>returns max</returns>
 
-        [HttpGet("DataAnalysis")]
+        [HttpGet("DataAnalysis_Max")]
 		[ProducesResponseType(200)]
 
-		public IActionResult DoAnalysis()
+		public IActionResult DoAnalysis_Max()
 		{
 
 			List<double> billAmounts = new List<double>();
@@ -160,7 +160,36 @@ namespace TodoRestAPI.Controllers
 
 			return Ok(billAmount);
 		}
-	}
+
+        /// <summary>
+        /// Action for calculating min of amount
+        /// </summary>
+        /// <returns>returns min</returns>
+
+
+        [HttpGet("DataAnalysis_Min")]
+        [ProducesResponseType(200)]
+
+        public IActionResult DoAnalysis_Min()
+        {
+
+            List<double> billAmounts = new List<double>();
+
+            using (var reader = new StreamReader("C:\\Users\\Vruddhi\\Desktop\\ACS_567_HWK\\HWK2\\HWK2\\HWK2\\bills.txt"))
+            {
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    var parts = line.Split(',');
+                    billAmounts.Add(double.Parse(parts[2]));
+                }
+            }
+            var billAmount = billAmounts.Min();
+
+            return Ok(billAmount);
+        }
+
+    }
 
 
 
