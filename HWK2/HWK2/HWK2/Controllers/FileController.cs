@@ -135,60 +135,18 @@ namespace TodoRestAPI.Controllers
 		}
 
         /// <summary>
-        /// Action for calculating max of amount
+        /// Action for calculating max, min, mean of amount
         /// </summary>
-        /// <returns>returns max</returns>
-
-        [HttpGet("DataAnalysis_Max")]
-		[ProducesResponseType(200)]
-
-		public IActionResult DoAnalysis_Max()
-		{
-
-			List<double> billAmounts = new List<double>();
-
-			using (var reader = new StreamReader("C:\\Users\\Vruddhi\\Desktop\\ACS_567_HWK\\HWK2\\HWK2\\HWK2\\bills.txt"))
-			{
-				string line;
-				while ((line = reader.ReadLine()) != null)
-				{
-					var parts = line.Split(',');
-					billAmounts.Add(double.Parse(parts[2]));
-				}
-			}
-			var billAmount = billAmounts.Max();
-
-			return Ok(billAmount);
-		}
-
-        /// <summary>
-        /// Action for calculating min of amount
-        /// </summary>
-        /// <returns>returns min</returns>
+        /// <returns>returns max, min, mean</returns>
 
 
-        [HttpGet("DataAnalysis_Min")]
+        [HttpGet("DataAnalysis")]
         [ProducesResponseType(200)]
-
-        public IActionResult DoAnalysis_Min()
+        public IActionResult GetMinMaxMean(string filePath)
         {
-
-            List<double> billAmounts = new List<double>();
-
-            using (var reader = new StreamReader("C:\\Users\\Vruddhi\\Desktop\\ACS_567_HWK\\HWK2\\HWK2\\HWK2\\bills.txt"))
-            {
-                string line;
-                while ((line = reader.ReadLine()) != null)
-                {
-                    var parts = line.Split(',');
-                    billAmounts.Add(double.Parse(parts[2]));
-                }
-            }
-            var billAmount = billAmounts.Min();
-
-            return Ok(billAmount);
+            var (min, max, mean) = TodoRepository.GetMinMaxMean(filePath);
+            return Ok(new { min, max, mean });
         }
-
     }
 
 
