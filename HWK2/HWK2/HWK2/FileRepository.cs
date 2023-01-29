@@ -1,13 +1,15 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
+using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
 
 namespace TodoRestAPI
 {
 
-    /// <summary>
-    /// instead of performing the operations directly,
+	/// <summary>
+	/// instead of performing the operations directly,
 	/// it uses an instance of the FileRepository interface to perform the operations(read,delete,edit)
-    /// </summary>
-    public class TodoRepository
+	/// </summary>
+	public class TodoRepository
 	{
 		private static TodoRepository instance;
 		private List<Todo> items;
@@ -45,21 +47,21 @@ namespace TodoRestAPI
 			return instance;
 		}
 
-        /// <summary>
-        /// The getItems method reads all the contents of a text file 
-        /// </summary>
-        /// <returns>returns it in the response.</returns>
-        public List<Todo> getItems()
+		/// <summary>
+		/// The getItems method reads all the contents of a text file 
+		/// </summary>
+		/// <returns>returns it in the response.</returns>
+		public List<Todo> getItems()
 		{
 			return items;
 		}
 
-        /// <summary>
-        /// The GetItem method reads all the contents of a text file 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns>returns response based on the id</returns>
-        public Todo GetItem(int id)
+		/// <summary>
+		/// The GetItem method reads all the contents of a text file 
+		/// </summary>
+		/// <param name="id"></param>
+		/// <returns>returns response based on the id</returns>
+		public Todo GetItem(int id)
 		{
 			Todo todo = null;
 
@@ -144,7 +146,26 @@ namespace TodoRestAPI
 			return delete == null;
 		}
 
+		/// <summary>
+		/// The GetMinMaxMean method calculate min,max and mean of the amount
+		/// </summary>
+		/// <param name="filePath"></param>
+		/// <returns>return min,max,mean of the amount</returns>
+        public static (double min, double max, double mean) GetMinMaxMean(string filePath)
+        {
 
-		
-	}
+            string[] lines = File.ReadAllLines("C:\\Users\\Vruddhi\\Desktop\\ACS_567_HWK\\HWK2\\HWK2\\HWK2\\bills.txt");
+            var result = new List<double>();
+            int columnIndex = 2;
+			foreach (string line in lines)
+			{
+                var parts = line.Split(',');
+                result.Add(double.Parse(parts[2]));
+            }
+            return (result.Min(), result.Max(), result.Average());
+        }
+
+
+
+    }
 }
