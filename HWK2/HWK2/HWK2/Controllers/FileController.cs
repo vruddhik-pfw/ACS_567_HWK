@@ -72,7 +72,7 @@ namespace MonthlyBillRestAPI.Controllers
 		{
 			if (bill == null)
 			{
-				return BadRequest("Todo is null");
+				return BadRequest("Bill is null");
 			}
 
 			bool result = BillRepository.getInstance().addItem(bill);
@@ -83,7 +83,7 @@ namespace MonthlyBillRestAPI.Controllers
 			}
 			else
 			{
-				return BadRequest("Items not added");
+				return BadRequest("Bill not added");
 			}
 		}
 
@@ -101,13 +101,13 @@ namespace MonthlyBillRestAPI.Controllers
 		{
 			if (updated == null)
 			{
-				return BadRequest("Item is null");
+				return BadRequest("Bill is null");
 			}
 			bool isUpdated = BillRepository.getInstance().editItem(id, updated);
 
 			if (!isUpdated)
 			{
-				return NotFound("No matching Item");
+				return NotFound("No matching Bill");
 			}
 			else
 			{
@@ -130,7 +130,7 @@ namespace MonthlyBillRestAPI.Controllers
 			}
 			else
 			{
-				return Ok("Item deleted");
+				return Ok("Bill deleted");
 			}
 		}
 
