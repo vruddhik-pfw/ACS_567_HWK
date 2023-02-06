@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 
-namespace TodoRestAPI.Controllers
+namespace MonthlyBillRestAPI.Controllers
 {
     /// <summary>
     ///  FileController class handles HTTP GET, POST, PUT, and DELETE requests.
@@ -9,15 +9,15 @@ namespace TodoRestAPI.Controllers
     [ApiController]
 	[Route("[controller]")]
 
-	public class TodoController : ControllerBase
+	public class MonthlyBillController : ControllerBase
 	{
         /// <summary>
         /// _logger is property of  Controller  that implements ILogger interface. 
 		/// It is used for logging purpose,it is defined  as private and readonly
         /// </summary>
-        private readonly ILogger<TodoController> _logger;
+        private readonly ILogger<MonthlyBillController> _logger;
 
-		public TodoController(ILogger<TodoController> logger)
+		public MonthlyBillController(ILogger<MonthlyBillController> logger)
 		{
 			_logger = logger;
 		}
@@ -27,12 +27,12 @@ namespace TodoRestAPI.Controllers
         /// </summary>
         /// <returns>action will return a 200 Ok status code when it runs successfully</returns>
         [HttpGet]
-		[ProducesResponseType(200, Type = typeof(List<Todo>))]
+		[ProducesResponseType(200, Type = typeof(List<MonthlyBill>))]
         // IActionResult is an interface and return type
 		// of this interface allows you to return an object of any type
         public IActionResult GetTodos()
 		{
-			return Ok(TodoRepository.getInstance().getItems());
+			return Ok(BillRepository.getInstance().getItems());
 		}
 
 
@@ -42,19 +42,19 @@ namespace TodoRestAPI.Controllers
         /// <returns>action will return a 200 Ok status code when it runs successfully</returns>
 
         [HttpGet("{id}")]
-		[ProducesResponseType(200, Type = typeof(List<Todo>))]
+		[ProducesResponseType(200, Type = typeof(List<MonthlyBill>))]
 		[ProducesResponseType(404)]
 
-		public IActionResult GetTodo(int id)
+		public IActionResult GetMonthlyBill(int id)
 		{
-			Todo todo = TodoRepository.getInstance().GetItem(id);
-			if (todo == null)
+            MonthlyBill get_data = BillRepository.getInstance().GetItem(id);
+			if (get_data == null)
 			{
 				return NotFound();
 			}
 			else
 			{
-				return Ok(todo);
+				return Ok(get_data);
 			}
 
 		}
@@ -68,14 +68,14 @@ namespace TodoRestAPI.Controllers
 		[ProducesResponseType(200)]
 		[ProducesResponseType(400)]
 
-		public IActionResult CreateTodo([FromBody] Todo todo)
+		public IActionResult CreateTodo([FromBody] MonthlyBill bill)
 		{
-			if (todo == null)
+			if (bill == null)
 			{
 				return BadRequest("Todo is null");
 			}
 
-			bool result = TodoRepository.getInstance().addItem(todo);
+			bool result = BillRepository.getInstance().addItem(bill);
 
 			if (result)
 			{
@@ -83,7 +83,7 @@ namespace TodoRestAPI.Controllers
 			}
 			else
 			{
-				return BadRequest("Todo not added");
+				return BadRequest("Items not added");
 			}
 		}
 
@@ -97,17 +97,17 @@ namespace TodoRestAPI.Controllers
 		[ProducesResponseType(200)]
 		[ProducesResponseType(404)]
 
-		public IActionResult UpdateTodo(int id, [FromBody] Todo todo)
+		public IActionResult UpdateTodo(int id, [FromBody] MonthlyBill updated)
 		{
-			if (todo == null)
+			if (updated == null)
 			{
-				return BadRequest("Todo is null");
+				return BadRequest("Item is null");
 			}
-			bool isUpdated = TodoRepository.getInstance().editItem(id, todo);
+			bool isUpdated = BillRepository.getInstance().editItem(id, updated);
 
 			if (!isUpdated)
 			{
-				return NotFound("No matching Todo");
+				return NotFound("No matching Item");
 			}
 			else
 			{
@@ -123,14 +123,14 @@ namespace TodoRestAPI.Controllers
         [HttpDelete("{id}")]
 		public IActionResult DeleteTodo(int id)
 		{
-			bool deleted = TodoRepository.getInstance().deleteItem(id);
+			bool deleted = BillRepository.getInstance().deleteItem(id);
 			if (deleted)
 			{
 				return NotFound("No matching id");
 			}
 			else
 			{
-				return Ok("Todo deleted");
+				return Ok("Item deleted");
 			}
 		}
 
@@ -144,7 +144,7 @@ namespace TodoRestAPI.Controllers
         [ProducesResponseType(200)]
         public IActionResult GetMinMaxMean(string filePath)
         {
-            var (min, max, mean) = TodoRepository.GetMinMaxMean(filePath);
+            var (min, max, mean) = BillRepository.GetMinMaxMean(filePath);
             return Ok(new { min, max, mean });
         }
     }

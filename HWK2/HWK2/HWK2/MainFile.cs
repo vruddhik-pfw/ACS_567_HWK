@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
-namespace TodoRestAPI
+namespace MonthlyBillRestAPI
 {
-	public class Todo
+	public class MonthlyBill
 	{
 		private static int nextId = 1;
 				
@@ -13,7 +13,7 @@ namespace TodoRestAPI
 		/// <param name="provider"></param>
 		/// <param name="bill"></param>
 		/// <param name="amount"></param>
-		public Todo(String provider,String bill, double amount)
+		public MonthlyBill(String provider,String bill, double amount)
 		{
 			Provider = provider;
 			Bill = bill;	

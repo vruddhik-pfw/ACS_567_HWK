@@ -2,19 +2,19 @@
 using System;
 using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
 
-namespace TodoRestAPI
+namespace MonthlyBillRestAPI
 {
 
 	/// <summary>
 	/// instead of performing the operations directly,
 	/// it uses an instance of the FileRepository interface to perform the operations(read,delete,edit)
 	/// </summary>
-	public class TodoRepository
+	public class BillRepository
 	{
-		private static TodoRepository instance;
-		private List<Todo> items;
+		private static BillRepository instance;
+		private List<MonthlyBill> items;
 
-		public TodoRepository()
+		public BillRepository()
 		{
 			///Reads text file 
 			String filepath = "C:\\Users\\Vruddhi\\Desktop\\ACS_567_HWK\\HWK2\\HWK2\\HWK2\\bills.txt";
@@ -31,14 +31,14 @@ namespace TodoRestAPI
 						string provider = values[0];
 						string bill = values[1];
 						double amount = double.Parse(values[2]);
-						items.Add(new Todo(provider, bill, amount));
+						items.Add(new MonthlyBill(provider, bill, amount));
 					}
 				}
 			}
 
 		}
 
-		public static TodoRepository getInstance()
+		public static BillRepository getInstance()
 		{
 			{
 				if (instance == null)
@@ -51,7 +51,7 @@ namespace TodoRestAPI
 		/// The getItems method reads all the contents of a text file 
 		/// </summary>
 		/// <returns>returns it in the response.</returns>
-		public List<Todo> getItems()
+		public List<MonthlyBill> getItems()
 		{
 			return items;
 		}
@@ -61,31 +61,31 @@ namespace TodoRestAPI
 		/// </summary>
 		/// <param name="id"></param>
 		/// <returns>returns response based on the id</returns>
-		public Todo GetItem(int id)
+		public MonthlyBill GetItem(int id)
 		{
-			Todo todo = null;
+            MonthlyBill bill = null;
 
-			foreach (Todo t in items)
+			foreach (MonthlyBill t in items)
 			{
 				if (id == t.Id)
 				{
-					todo = t;
+					bill = t;
 					break;
 				}
 			}
-			return todo;
+			return bill;
 		}
 		/// <summary>
 		/// The addItem method adds to the response
 		/// </summary>
 		/// <param name="todo"></param>
 		/// <returns>returns true if successfully added</returns>
-		public bool addItem(Todo todo)
+		public bool addItem(MonthlyBill bill)
 		{
 			bool isAdded = true;
-			foreach (Todo t in items)
+			foreach (MonthlyBill t in items)
 			{
-				if (t.Id == todo.Id)
+				if (t.Id == bill.Id)
 				{
 					isAdded = false;
 					break;
@@ -93,7 +93,7 @@ namespace TodoRestAPI
 			}
 			if (isAdded)
 			{
-				items.Add(todo);
+				items.Add(bill);
 			}
 			return isAdded;
 
@@ -104,11 +104,11 @@ namespace TodoRestAPI
 		/// <param name="id"></param>
 		/// <param name="updated"></param>
 		/// <returns>returns true if updated successfully</returns>
-		public bool editItem(int id, Todo updated)
+		public bool editItem(int id, MonthlyBill updated)
 		{
 			bool isEdited = false;
 
-			foreach (Todo t in items)
+			foreach (MonthlyBill t in items)
 			{
 				if (t.Id == id)
 				{
@@ -126,12 +126,12 @@ namespace TodoRestAPI
 		/// The deleteItem method deletes request based on the specified id
 		/// </summary>
 		/// <param name="id"></param>
-		/// <returns>returns Todo deleted and null if not found </returns>
+		/// <returns>returns item deleted and null if not found </returns>
 		public bool deleteItem(int id)
 		{
-			Todo delete = null;
+            MonthlyBill delete = null;
 
-			foreach (Todo t in items)
+			foreach (MonthlyBill t in items)
 			{
 				if (id == t.Id)
 				{
