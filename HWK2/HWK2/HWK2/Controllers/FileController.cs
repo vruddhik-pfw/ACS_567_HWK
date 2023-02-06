@@ -30,7 +30,7 @@ namespace MonthlyBillRestAPI.Controllers
 		[ProducesResponseType(200, Type = typeof(List<MonthlyBill>))]
         // IActionResult is an interface and return type
 		// of this interface allows you to return an object of any type
-        public IActionResult GetTodos()
+        public IActionResult GetBill()
 		{
 			return Ok(BillRepository.getInstance().getItems());
 		}
@@ -68,7 +68,7 @@ namespace MonthlyBillRestAPI.Controllers
 		[ProducesResponseType(200)]
 		[ProducesResponseType(400)]
 
-		public IActionResult CreateTodo([FromBody] MonthlyBill bill)
+		public IActionResult CreateBill([FromBody] MonthlyBill bill)
 		{
 			if (bill == null)
 			{
@@ -97,7 +97,7 @@ namespace MonthlyBillRestAPI.Controllers
 		[ProducesResponseType(200)]
 		[ProducesResponseType(404)]
 
-		public IActionResult UpdateTodo(int id, [FromBody] MonthlyBill updated)
+		public IActionResult UpdateBill(int id, [FromBody] MonthlyBill updated)
 		{
 			if (updated == null)
 			{
@@ -121,7 +121,7 @@ namespace MonthlyBillRestAPI.Controllers
         /// <returns>action will return a 200 Ok status code when it runs successfully</returns>
 
         [HttpDelete("{id}")]
-		public IActionResult DeleteTodo(int id)
+		public IActionResult DeleteBill(int id)
 		{
 			bool deleted = BillRepository.getInstance().deleteItem(id);
 			if (deleted)
