@@ -78,7 +78,7 @@ namespace MonthlyBillRestAPI
 		/// <summary>
 		/// The addItem method adds to the response
 		/// </summary>
-		/// <param name="todo"></param>
+		/// <param name="bill"></param>
 		/// <returns>returns true if successfully added</returns>
 		public bool addItem(MonthlyBill bill)
 		{
