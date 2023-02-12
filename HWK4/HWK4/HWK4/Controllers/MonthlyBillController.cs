@@ -69,6 +69,13 @@ namespace MonthlyBillRestAPI.Controllers
 
         }
 
+        /// <summary>
+        /// Action for checking if the Bill exists
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>action will return a 200 Ok status code when it runs successfully</returns>
+
         [HttpGet("MonthlyBillExists")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
