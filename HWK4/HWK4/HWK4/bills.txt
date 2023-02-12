@@ -1,0 +1,8 @@
+Provider1,Gas,100
+Provider2,Water,200
+Provider3,Electricity,100
+Provider4,Water,500
+Provider5,Gas,100
+Provider6,Water,120
+Provider7,Electricity,150
+Provider8,Water,200
