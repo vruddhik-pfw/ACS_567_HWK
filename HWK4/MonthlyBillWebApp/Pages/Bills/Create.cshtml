@@ -1,0 +1,45 @@
+﻿@page
+@model MonthlyBillWebApp.Pages.Bills.CreateModel
+@{
+	 // This is a Razor Pages code block
+}
+<!-- HTML page for create Monthly Bill -->
+<br>
+<h2>Create Monthly Bill</h2>
+
+@if (@Model.errorMessage.Length > 0)
+{
+	<!-- Display error message if there is any -->
+	<div>@Model.errorMessage</div>
+}
+
+<form method="POST">
+	<!-- Table to input monthly bill details -->
+	<table>
+		<tr>
+			<td>Id</td>
+			<td><input type="text" name="id" value="@Model.monthlyBill.Id"></td>
+		</tr>
+		<tr>
+			<td>Provider</td>
+			<td><input type="text" name="provider" value="@Model.monthlyBill.Provider"></td>
+		</tr>
+		<tr>
+			<td>Bill</td>
+			<td><input type="text" name="bill" value="@Model.monthlyBill.Bill"></td>
+		</tr>
+		<tr>
+			<td>Amount</td>
+			<td><input type="text" name="amount" value="@Model.monthlyBill.Amount"></td>
+		</tr>
+	</table>
+	<p></p>
+
+	@if (@Model.successMessage.Length > 0)
+	{
+		<!-- Display success message if there is any -->
+		<div>@Model.successMessage</div>
+	}
+
+	<input type="submit" value="Add" class="btn btn-primary" />
+</form>

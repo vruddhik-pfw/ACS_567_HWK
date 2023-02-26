@@ -1,0 +1,41 @@
+﻿@page
+@model MonthlyBillWebApp.Pages.Bills.DeleteModel
+@{
+}
+
+<!-- HTML page for Delete Monthly Bill -->
+<br>
+<h2>Delete Monthly Bill</h2>
+
+@if (@Model.errorMessage.Length > 0)
+{
+	<div>@Model.errorMessage</div>
+}
+
+
+<!-- Display a form for deleting the bill -->
+<form method="POST">
+	<input type="hidden" name="id" value="@Model.monthlyBill.Id" />
+	<!-- Store the bill's ID in a hidden input field -->
+	<table>
+		<tr>
+			<td>Provider</td>
+			<td>@Model.monthlyBill.Provider</td>
+		</tr>
+		<tr>
+			<td>Bill</td>
+			<td>@Model.monthlyBill.Bill</td>
+		</tr>
+		<tr>
+			<td>Amount</td>
+			<td>@Model.monthlyBill.Amount</td>
+		</tr>
+		<tr>
+			<td>Is Completed</td>
+			<td>@Model.monthlyBill.IsCompleted</td>
+		</tr>
+	</table>
+	<p></p>
+	<!-- Display a button for submitting the form to delete the bill -->
+	<input type="submit" value= "Delete" class="btn btn-primary" />
+</form>
