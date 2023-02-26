@@ -1,0 +1,44 @@
+﻿@page
+@model MonthlyBillWebApp.Pages.Bills.EditModel
+@{
+}
+<!-- HTML page for Edit Monthly Bill -->
+
+
+<br>
+<h2>Edit Monthly Bill</h2>
+
+@if (@Model.errorMessage.Length > 0)
+{
+	<div>@Model.errorMessage</div>
+}
+
+<form method="POST">
+	<input type="hidden" name="id" value="@Model.monthlyBill.Id" />
+	<table>
+		<tr>
+			<td>Provider</td>
+			<td><input type="text" name="provider" value="@Model.monthlyBill.Provider"></td>
+		</tr>
+		<tr>
+			<td>Bill</td>
+			<td><input type="text" name="bill" value="@Model.monthlyBill.Bill"></td>
+		</tr>
+		<tr>
+			<td>Amount</td>
+			<td><input type="text" name="amount" value="@Model.monthlyBill.Amount"></td>
+		</tr>
+		<tr>
+			<td>Is Completed</td>
+			<td><input type="checkbox" name="isCompleted" @(Model.monthlyBill.IsCompleted ? "checked" : "")></td>
+		</tr>
+	</table>
+	<p></p>
+
+	@if (@Model.successMessage.Length > 0)
+	{
+		<div>@Model.successMessage</div>
+	}
+	<!-- Display a button for submitting the form to edit the bill -->
+	<input type="submit" value="Edit" class="btn btn-primary" />
+</form>

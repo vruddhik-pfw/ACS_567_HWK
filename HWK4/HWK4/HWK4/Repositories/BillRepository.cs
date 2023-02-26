@@ -80,9 +80,14 @@ namespace HWK4.Repositories
 		/// </summary>
 		/// <param name="bill"></param>
 		/// <returns>returns item deleted and null if not found </returns>
-        public bool deleteItem(MonthlyBill bill)
+        public bool deleteItem(int id)
         {
-            _context.Remove(bill);
+            var items = _context.MonthlyBill.Where(bill => bill.Id == id);
+            foreach(var bill in items)
+            {
+                _context.Remove(bill);
+            }
+            
             return Save();
         }
 

@@ -1,0 +1,38 @@
+﻿@page
+@model MonthlyBillWebApp.Pages.Bills.IndexModel
+@{
+}
+<!-- HTML page for List of Monthly Bills -->
+<br>
+<h2> List of Monthly Bills </h2>
+
+<a class="btn btn-primary btn-sm" href="/Bills/Create"> New Monthly Bill</a>
+<a class="btn btn-primary btn-sm" href="/Bills/Analyse"> Analyse</a>
+<table class= "table">
+	<thead>
+		<tr>
+			<th>Provider</th>
+			<th>Bill</th>
+			<th>Amount</th>
+			<th>Is Completed</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach(var item in  Model.monthlyBills)
+		{
+			<tr>
+				<td> @item.Provider</td>
+				<td> @item.Bill</td>
+				<td> @item.Amount</td>
+				<td> @item.IsCompleted</td>
+			
+				<td>
+					<a class="btn btn-primary btn-sm" href="/Bills/Edit?id=@item.Id">Edit</a>
+					<a class="btn btn-danger btn-sm" href="/Bills/Delete?id=@item.Id">Delete</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
+

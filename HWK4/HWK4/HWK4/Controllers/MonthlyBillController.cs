@@ -121,7 +121,7 @@ namespace MonthlyBillRestAPI.Controllers
         /// </summary>
         /// <returns>action will return a 200 Ok status code when it runs successfully</returns>
 
-        [HttpPut("{id}")]
+        [HttpPut()]
         [ProducesResponseType(400)]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
@@ -132,9 +132,19 @@ namespace MonthlyBillRestAPI.Controllers
             {
                 return BadRequest("Bill is null");
             }
-            bool result = _monthlyBill.editItem(updated);
+            MonthlyBill result = _monthlyBill.GetItem(updated.Id);
 
-            return result ? Ok(result) : BadRequest();
+            if (updated == null)
+            {
+                return BadRequest("Bill not found");
+            }
+            result.Provider = updated.Provider;
+            result.Bill = updated.Bill;
+            result.Amount = updated.Amount;
+            result.IsCompleted = updated.IsCompleted;
+
+            bool isUpdated = _monthlyBill.editItem(result);
+            return isUpdated ? Ok(result) : BadRequest();
         }
 
 
@@ -143,10 +153,10 @@ namespace MonthlyBillRestAPI.Controllers
         /// </summary>
         /// <returns>action will return a 200 Ok status code when it runs successfully</returns>
 
-        [HttpDelete]
-        public IActionResult DeleteBill(MonthlyBill bill)
+        [HttpDelete("{id}")]
+        public IActionResult DeleteBill(int id)
         {
-            bool result = _monthlyBill.deleteItem(bill);
+            bool result = _monthlyBill.deleteItem(id);
 
             return result ? Ok(result) : BadRequest();
         }

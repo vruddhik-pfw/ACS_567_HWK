@@ -14,7 +14,7 @@ namespace HWK4.Interfaces
 
         bool editItem(MonthlyBill bill);
 
-        bool deleteItem(MonthlyBill bill);
+        bool deleteItem(int id);
 
         DataAnalysis DataAnalysis();
         bool Save();
